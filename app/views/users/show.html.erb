@@ -1,0 +1,153 @@
+<ul>
+  <li><a href="#"><h1><b>EXALOGIC</b></h1></a></li>
+  <% if session[:user_type]=='admin'%>
+    <li><a class="active" href="/users">Home</a></li>
+    <li><a href="/users/new">Create Users</a></li>
+  <% else %>
+    <li><a class="active" href="#">Home</a></li>
+  <% end%>
+
+  <li><%= link_to "Logout", logout_path, method: :delete, data: {confirm: "Are you sure??"}%>
+</li>
+<div class="">
+</ul>
+<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Fname:</strong>
+    <%= @user.fname %>
+  </p>
+
+  <p>
+    <strong>Lname:</strong>
+    <%= @user.lname %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+    <%= @user.age %>
+  </p>
+
+  <p>
+    <strong>Doj:</strong>
+    <%= @user.doj %>
+  </p>
+
+  <p>
+    <strong>Contact:</strong>
+    <%= @user.contact %>
+  </p>
+
+  <p>
+    <strong>Sal:</strong>
+    <%= @sal.to_i %>
+  </p>
+
+  
+  <p>
+    <strong>Sal per month:</strong>
+    <%= @salpm.to_i %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @user.address %>
+  </p>
+
+  <p>
+    <strong>City:</strong>
+    <%= @user.city %>
+  </p>
+
+  <p>
+    <strong>State:</strong>
+    <%= @user.state %>
+  </p>
+
+  <p>
+    <strong>Country:</strong>
+    <%= @user.country %>
+  </p>
+
+  <p>
+    <strong>Pincode:</strong>
+    <%= @user.pincode %>
+  </p>
+
+  <p>
+    <strong>Blood:</strong>
+    <%= @user.blood %>
+  </p>
+
+  <p>
+    <strong>Ename:</strong>
+    <%= @user.ename %>
+  </p>
+
+  <p>
+    <strong>Econtact:</strong>
+    <%= @user.econtact %>
+  </p>
+
+  <p>
+    <strong>basic_pay:</strong>
+    <%= @salary.basic_pay %>
+  </p>
+
+  <p>
+    <strong>hra:</strong>
+    <%= @hrac %>
+  </p>
+
+  <p>
+    <strong>cca:</strong>
+    <%= @ccac %>
+  </p>
+
+  <p>
+    <strong>special_allowance:</strong>
+    <%= @salary.special_allowance %>
+  </p>
+
+  <p>
+    <strong>transport_allowance:</strong>
+    <%= @salary.transport_allowance  %>
+  </p>
+
+  <p>
+    <strong>reimbursement:</strong>
+    <%= @salary.reimbursement %>
+  </p>
+
+  <p>
+    <strong>income_tax :</strong>
+    <%= @itc%>
+  </p>
+
+  <p>
+    <strong>professional_tax:</strong>
+    <%= @ptc%>
+  </p>
+
+  <p>
+    <strong>loss_of_pay:</strong>
+    <%= @lopc %>
+  </p>
+
+  <p>
+    <strong>other_deductions:</strong>
+    <%= @deduction %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+  <% if session[:user_type]=='admin'%>
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Back', users_path %>
+  <% end%>
+
+</div>

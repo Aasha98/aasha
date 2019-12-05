@@ -1,0 +1,118 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <%# if user.errors.any? %>
+    <!-- <div id="error_explanation">
+      <h2><%#= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <%# user.errors.full_messages.each do |message| %>
+          <li><%#= message %></li>
+        <% #end %>
+      </ul>
+    </div> -->
+  <%# end %>
+  <style>
+    input[type=text] {
+   width: 20%;
+   padding: 5px 5px;
+   box-sizing: border-box;
+  }
+  </style>
+  <div class="field">
+    <%= form.label :fname ,class: "required" %>
+    <%= form.text_field :fname %><span style="color:red;"><%= @user.errors[:fname][0] rescue nil%></span>
+  </div>
+
+  <div class="field">
+    <%= form.label :lname ,class: "required" %>
+    <%= form.text_field :lname %><span style="color:red;"><%= @user.errors[:lname][0] rescue nil%></span>
+  </div>
+
+  <div class="field">
+    <%= form.label :age , class: "required" %>
+    <%= form.number_field :age %><span style="color:red;"><%= @user.errors[:age][0] rescue nil%></span>
+  </div>
+
+  <div class="field">
+    <%= form.label :doj %>
+    <%= form.date_field :doj , :max => Date.today %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact ,class: "required"%>
+    <%= form.text_field :contact %><span style="color:red;"><%= @user.errors[:contact][0] rescue nil%></span>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.select :state, ['State','Andaman and Nicobar Islands','Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chandigarh','Chhattisgarh','Dadra and Nagar Haveli','Daman and Diu','Delhi','Goa','Gujarat','Haryana','Himachal Pradesh','Jammu and Kashmir','Jharkhand','Karnataka','Kerala','Ladakh','Lakshadweep','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Puducherry','Punjab','Rajasthan','Sikkim','Tamil Nadu''Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.select :country, ['Country','India'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pincode ,class: "required" %>
+    <%= form.text_field :pincode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :blood %>
+    <%= form.select :blood , ['A+','B+','O+','AB+','AB-','A-','B-','o-']  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ename , class: "required" %>
+    <%= form.text_field :ename %><span style="color:red;"><%= @user.errors[:ename][0] rescue nil%></span>
+  </div>
+
+  <div class="field">
+    <%= form.label :econtact , class: "required" %>
+    <%= form.text_field :econtact %><span style="color:red;"><%= @user.errors[:contact][0] rescue nil%></span>
+  </div>
+
+  <div class="field">
+    <%= form.label :pskill %>
+    <%= form.text_field :pskill %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sskill1 %>
+    <%= form.text_field :sskill1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sskill2 %>
+    <%= form.text_field :sskill2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email , class: "required" %>
+    <%= form.text_field :email %><span style="color:red;"><%= @user.errors[:email][0] rescue nil%></span>
+  </div>
+
+  <div class="field">
+    <%= form.label :password , class: "required" %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation , class: "required" %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

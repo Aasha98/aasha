@@ -1,0 +1,12 @@
+<ul>
+  <li><a href="#"><h1><b>EXALOGIC</b></h1></a></li>
+  <li><a href="/users">Home</a></li>
+  <li><a class="active" href="/users/new">Create Users</a></li>
+  <li><%= link_to "Logout", logout_path, method: :delete, data: {confirm: "Are you sure??"}%>
+</li>
+</ul>
+<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+
+  <%= render 'form', user: @user %>
+
+</div>

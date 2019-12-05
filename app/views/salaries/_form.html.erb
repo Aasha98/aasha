@@ -1,0 +1,82 @@
+
+<%= form_for @salary do |form| %>
+  <style>
+    <style>
+ input[type=text], select {
+  width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+ input[type=submit] {
+  width: 20%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 0px 0;
+  margin-left: 2px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+ input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+ .field{
+  border-radius: 2px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+</style>
+  <br><h1> Salary Details</h1>
+  <div class="field">
+  <%= form.label :basic_pay, class: "required"   %>
+    <%= form.text_field :basic_pay, :default => 0, :min => 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hra, class: "required" %>
+    <%= form.text_field :hra, :default => 0, :min => 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cca , class: "required"  %>
+    <%= form.text_field :cca, :default => 0, :min => 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :special_allowance , class: "required"  %>
+    <%= form.text_field :special_allowance, :default => 0, :min => 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transport_allowance, class: "required" %>
+    <%= form.text_field :transport_allowance, :default => 0, :min => 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reimbursement, class: "required"  %>
+    <%= form.text_field :reimbursement, :default => 0, :min => 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :loss_of_pay, class: "required"  %>
+    <%= form.text_field :loss_of_pay, :default => 0, :min => 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_deductions, class: "required"  %>
+    <%= form.text_field :other_deductions, :default => 0, :min => 0 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

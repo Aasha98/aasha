@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="#"><h1><b>EXALOGIC</b></h1></a></li>
+      <li><a href="/users">Home</a></li>
+      <li><a class="active" href="/users/new">Edit Users</a></li>
+      <li><%= link_to "Logout", logout_path, method: :delete, data: {confirm: "Are you sure??"}%>
+    </li>
+    </ul>
+    <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+      <h1>Editing User</h1>
+
+      <%= render 'form', user: @user %>
+
+      <%= link_to 'Show', @user %> |
+      <%= link_to 'Back', users_path %>
+    </div>
+
+  </body>
+</html>

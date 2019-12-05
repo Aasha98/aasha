@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+  </head>
+  <body>
+
+
+    <ul>
+      <li><a href="#"><h1><b>EXALOGIC</b></h1></a></li>
+      <li><a class="active" href="#">Home</a></li>
+      <li><a href="/users/new">Create Users</a></li>
+      <li><%= link_to "Logout", logout_path, method: :delete, data: {confirm: "Are you sure??"}%>
+</li>
+    </ul>
+
+    <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+      <p id="notice"><%= notice %></p>
+
+      <h1>All Users</h1>
+
+      <table id="customers">
+        <thead>
+          <tr>
+            <th>Fname</th>
+            <th>Lname</th>
+            <th>Age</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @users.each do |user| %>
+            <% if user.role!='admin'%>
+            <tr>
+              <td><%= user.fname %></td>
+              <td><%= user.lname %></td>
+              <td><%= user.age %></td>
+              <td><%= user.contact %></td>
+              <td><%= user.email %></td>
+              <td><%= link_to 'Show', user %></td>
+              <td><%= link_to 'Edit', edit_user_path(user) %></td>
+              <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end%>
+          <% end %>
+        </tbody>
+      </table>
+</div>
+  </body>
+</html>

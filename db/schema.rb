@@ -10,22 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_044125) do
+ActiveRecord::Schema.define(version: 2019_12_09_074636) do
 
-  create_table "salaries", force: :cascade do |t|
-    t.decimal "basic_pay"
-    t.decimal "hra"
-    t.decimal "cca"
-    t.decimal "special_allowance"
-    t.decimal "transport_allowance"
-    t.decimal "reimbursement"
-    t.decimal "income_tax"
-    t.decimal "professional_tax"
-    t.decimal "loss_of_pay"
-    t.decimal "other_deductions"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+# Could not dump table "salaries" because of following StandardError
+#   Unknown type 'sring' for column 'no_of_Working_days'
 
   create_table "users", force: :cascade do |t|
     t.string "fname"
@@ -51,6 +39,12 @@ ActiveRecord::Schema.define(version: 2019_12_04_044125) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "role"
+    t.string "select_month"
+    t.string "department"
+    t.string "designation"
+    t.string "total_earnings"
+    t.string "total_deduction"
+    t.string "no_of_leave_taken"
   end
 
 end

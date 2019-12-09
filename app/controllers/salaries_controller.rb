@@ -7,7 +7,7 @@ class SalariesController < ApplicationController
 	def create
 	@error
 	@salary = Salary.new(salary_params)
-	@salary.id=session[:user_id]
+	@salary.employee_id=session[:user_id]
 	if @salary.save
 	redirect_to user_path(session[:user_id])
 	else
@@ -29,10 +29,10 @@ class SalariesController < ApplicationController
 	  render 'edit'
 	 end
 	end
-	
+
 	private
 
 	def salary_params
-	params.require(:salary).permit(:basic_pay, :hra, :cca, :special_allowance, :transport_allowance, :reimbursement, :income_tax, :professional_tax, :loss_of_pay, :other_deductions)
+	params.require(:salary).permit(:basic_pay, :hra, :cca, :special_allowance, :transport_allowance, :reimbursement, :income_tax, :professional_tax, :loss_of_pay, :other_deductions,:bank_acc_num,:bank_branch,:ifsc_code,:account_holder_name,:pan_number,:no_of_Working_days,:employee_id,)
 	end
 end

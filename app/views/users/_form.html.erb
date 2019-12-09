@@ -96,6 +96,11 @@
     <%= form.label :sskill2 %>
     <%= form.text_field :sskill2 %>
   </div>
+   
+  <div class="field">
+    <%= form.label :select_month %>
+    <%= form.select :select_month,['January','February ','March','April','May','June','July','August','September','October','November','December'] %>
+  </div>
 
   <div class="field">
     <%= form.label :email , class: "required" %>

@@ -1,11 +1,38 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy,:formone]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @user = User.all
   end
+
+  def formone
+    @salary = Salary.find_by(employee_id: params[:id])
+      #hra,cca ,loss_of_pay calculation per month
+    if @salary.basic_pay !=nil
+      @salary.hra= (@salary.basic_pay 
+        40 )/ 100
+      @salary.cca= (@salary.basic_pay  * 15) / 100
+      @salary.special_allowance=(@salary.basic_pay * 5) / 100
+      if @user.no_of_leave_taken != nil
+         @salary.loss_of_pay=(@salary.basic_pay / 30) * @user.no_of_leave_taken
+      end 
+      if @salary.save!
+        @user.total_earnings=@salary.hra+@salary.cca+@salary.special_allowance
+        total=(@user.total_earnings.to_d)-@salary.loss_of_pay
+        @user.total_deduction=total.to_s
+        if @user.save!
+          redirect_to users_path
+        else
+          render 'formone'
+        end
+      else
+        render 'formone'
+      end
+    end
+  end
+  
 
   # GET /users/1
   # GET /users/1.json
@@ -28,7 +55,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id]=@user.id
-      redirect_to '/salaries/new', notice: 'User was successfully created.' 
+      redirect_to new_salary_path, notice: 'User was successfully created.' 
     else
       render :new
     end
@@ -85,7 +112,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:fname, :lname, :age, :doj, :contact, :sal, :salpm, :address, :city, :state, :country, :pincode, :blood, :ename, :econtact, :pskill, :sskill1, :sskill2, :email, :password, :password_confirmation)
+      params.require(:user).permit(:select_month,:fname, :lname, :age, :doj, :contact, :sal, :salpm, :address, :city, :state, :country, :pincode, :blood, :ename, :econtact, :pskill, :sskill1, :sskill2, :email, :password, :password_confirmation, :total_earnings, :total_deduction, :no_of_leave_taken)
     end
     
     def itc(sal)
@@ -110,7 +137,7 @@ class UsersController < ApplicationController
     end
 
     def hrac(basic_pay, hr)
-      hr = 0
+      hr = 0 
       if hr != 0
       basic_pay * (hr/100)
     end
@@ -133,4 +160,3 @@ class UsersController < ApplicationController
     return lop
     end
 end
-

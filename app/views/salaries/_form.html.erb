@@ -76,7 +76,43 @@
     <%= form.text_field :other_deductions, :default => 0, :min => 0 ,:required => true %>
   </div>
 
+  <div class="field">
+    <%= form.label :bank_acc_num, class: "required" %>
+    <%= form.text_field :bank_acc_num,:required => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bank_branch, class: "required"  %>
+    <%= form.text_field :bank_branch,:required => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ifsc_code, class: "required"  %>
+    <%= form.text_field :ifsc_code,:required => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :account_holder_name, class: "required"  %>
+    <%= form.text_field :account_holder_name,:required => true %>
+  </div>
+
+   <div class="field">
+    <%= form.label :pan_number, class: "required"  %>
+    <%= form.text_field :pan_number,:required => true %>
+  </div>
+
+   <div class="field">
+    <%= form.label :no_of_Working_days, class: "required"  %>
+    <%= form.text_field :no_of_Working_days,:required => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :employee_id, class: "required"  %>
+    <%= form.text_field :employee_id,:required => true %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+  
 <% end %>

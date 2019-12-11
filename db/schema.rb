@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_074636) do
+ActiveRecord::Schema.define(version: 2019_12_11_070113) do
 
 # Could not dump table "salaries" because of following StandardError
 #   Unknown type 'sring' for column 'no_of_Working_days'
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_074636) do
     t.string "total_earnings"
     t.string "total_deduction"
     t.string "no_of_leave_taken"
+    t.integer "net_pay"
   end
 
 end

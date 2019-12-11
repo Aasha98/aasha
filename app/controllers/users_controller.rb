@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy,:formone]
+  layout "form", only: :formone
 
   # GET /users
   # GET /users.json
@@ -9,28 +10,32 @@ class UsersController < ApplicationController
 
   def formone
     @salary = Salary.find_by(employee_id: params[:id])
-      #hra,cca ,loss_of_pay calculation per month
-    if @salary.basic_pay !=nil
-      @salary.hra= (@salary.basic_pay 
-        40 )/ 100
-      @salary.cca= (@salary.basic_pay  * 15) / 100
-      @salary.special_allowance=(@salary.basic_pay * 5) / 100
-      if @user.no_of_leave_taken != nil
-         @salary.loss_of_pay=(@salary.basic_pay / 30) * @user.no_of_leave_taken
-      end 
-      if @salary.save!
-        @user.total_earnings=@salary.hra+@salary.cca+@salary.special_allowance
-        total=(@user.total_earnings.to_d)-@salary.loss_of_pay
-        @user.total_deduction=total.to_s
-        if @user.save!
-          redirect_to users_path
-        else
-          render 'formone'
-        end
-      else
-        render 'formone'
-      end
-    end
+      # hra,cca ,loss_of_pay calculation per month
+      # @salary.hra= (@salary.basic_pay * 40 )/ 100
+      # @salary.cca= (@salary.basic_pay  * 15) / 100
+      # @salary.special_allowance=(@salary.basic_pay * 5) / 100
+      # if @user.no_of_leave_taken != nil
+      #    @salary.loss_of_pay=(@salary.basic_pay / 30) * @user.no_of_leave_taken
+      # end 
+      # if @salary.save!
+      #   @user.total_earnings=@salary.hra+@salary.cca+@salary.special_allowance
+      #   total=(@user.total_earnings.to_d)-@salary.loss_of_pay
+      #   @user.total_deduction=total.to_s
+      #   if @user.save!
+      #     redirect_to users_path
+      #   else
+      #     render 'formone'
+      #   end
+      # else
+      #   render 'formone'
+      # end
+            
+      # pdf = WickedPdf.new.pdf_from_string( #1
+      # render_to_string('salary_slip', layout: false)) #2
+      # send_data(pdf, #3
+      # filename: 'salary_slip.pdf', #4
+      # type: 'application/pdf', #5
+      # disposition: 'attachment') #6
   end
   
 
@@ -87,7 +92,7 @@ class UsersController < ApplicationController
 
   def show
    @user = User.find(params[:id])
-    @salary=Salary.find(params[:id])
+    @salary=Salary.find_by(employee_id: @user.id)
     @hrac = hrac(@salary.basic_pay, @salary.hra)
     @ccac = ccac(@salary.basic_pay, @salary.cca) 
     @gross = @salary.basic_pay + @hrac + @ccac + @salary.reimbursement
@@ -101,7 +106,7 @@ class UsersController < ApplicationController
     end
     @net = @gross - @deduction
     @salpm = @net
-    @sal = @salpm* 12
+    @sal = @salpm * 12
   end
 
   private
@@ -112,7 +117,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:select_month,:fname, :lname, :age, :doj, :contact, :sal, :salpm, :address, :city, :state, :country, :pincode, :blood, :ename, :econtact, :pskill, :sskill1, :sskill2, :email, :password, :password_confirmation, :total_earnings, :total_deduction, :no_of_leave_taken)
+      params.require(:user).permit(:select_month,:fname,:basic_pay, :lname, :age, :doj, :contact, :sal, :salpm, :address, :city, :state, :country, :pincode, :blood, :ename, :econtact, :pskill, :sskill1, :sskill2, :email, :password, :password_confirmation, :total_earnings, :total_deduction, :no_of_leave_taken, :department, :designation)
     end
     
     def itc(sal)

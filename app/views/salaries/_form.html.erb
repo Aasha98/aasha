@@ -82,6 +82,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :no_of_leave_taken, class: "required" %>
+    <%= form.text_field :no_of_leave_taken,:required => true %>
+  </div>
+
+  <div class="field">
     <%= form.label :bank_branch, class: "required"  %>
     <%= form.text_field :bank_branch,:required => true %>
   </div>
